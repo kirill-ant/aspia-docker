@@ -5,8 +5,10 @@ permissions:
 
 on:
   workflow_dispatch:
-#   push:
-#     branches: [ main ]
+  push:
+    branches: [ main ]
+    paths:
+      - '**/Dockerfile'
 
 jobs:
   build:
