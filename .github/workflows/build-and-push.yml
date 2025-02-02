@@ -25,7 +25,8 @@ jobs:
             if [ -f "$dir/Dockerfile" ]; then
               name=$(basename "$dir")
               echo "Building image for $name from $dir"
-              docker build -f "$dir/Dockerfile" -t ghcr.io/${{ github.repository_owner }}/${REPO_NAME}.$name:latest "$dir"
+              IMAGE="ghcr.io/${{ github.repository_owner }}/${REPO_NAME}/$name:latest"
+              docker build -f "$dir/Dockerfile" -t $IMAGE "$dir"
               echo "Pushing image $IMAGE"
               docker push "$IMAGE"
             fi
