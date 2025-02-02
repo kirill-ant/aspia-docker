@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Log in to GitHub Container Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
@@ -22,7 +22,7 @@ jobs:
             if [ -f "$dir/Dockerfile" ]; then
               name=$(basename "$dir")
               echo "Building image for $name from $dir"
-              docker build -f "$dir/Dockerfile" -t ghcr.io/${{ github.repository_owner }}/${REPO_NAME}/$name:latest "$dir"
+              docker build -f "$dir/Dockerfile" -t ghcr.io/${{ github.repository_owner }}/${REPO_NAME}.$name:latest "$dir"
               echo "Pushing image $IMAGE"
               docker push "$IMAGE"
             fi
