@@ -1,9 +1,9 @@
-FROM debian:bookworm
+FROM debian:bookworm-slim
 
 LABEL maintainer="kirill_ant"
-LABEL image_version="0.0.1"
+LABEL image_version="0.0.2"
 LABEL org.opencontainers.image.title="aspia-router container"
-LABEL org.opencontainers.image.version="0.0.1"
+LABEL org.opencontainers.image.version="0.0.2"
 
 ENV ASPIA_LOG_TO_STDOUT=1
 ENV ASPIA_LOG_LEVEL=0
