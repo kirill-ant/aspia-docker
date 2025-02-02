@@ -1,0 +1,22 @@
+name: Build and Push Docker Image
+
+on:
+  workflow_dispatch:
+#   push:
+#     branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build images from first-level directories
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          for dir in $(find . -maxdepth=1 -type d ! -path .); do
+            if [ -f "$dir/Dockerfile" ]; then
+              name=$(basename "$dir")
+              echo "Building image for $name from $dir"
+              docker build -f "$dir/Dockerfile" -t ghcr.io/${{ github.repository_owner }}/${REPO_NAME}/$name:latest "$dir"
+            fi
+          done
