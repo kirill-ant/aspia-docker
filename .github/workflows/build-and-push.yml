@@ -13,7 +13,7 @@ jobs:
       - name: Build images from first-level directories
         run: |
           REPO_NAME="${{ github.event.repository.name }}"
-          for dir in $(find . -maxdepth=1 -type d ! -path .); do
+          for dir in $(find . -maxdepth 1 -type d ! -path .); do
             if [ -f "$dir/Dockerfile" ]; then
               name=$(basename "$dir")
               echo "Building image for $name from $dir"
